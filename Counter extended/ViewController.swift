@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         historyOfChanges.text = "История изменений:\n"
     }
     
-    private func date() -> String{
+    private func date() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ru_RU")
@@ -45,9 +45,13 @@ class ViewController: UIViewController {
         historyOfChanges.scrollRangeToVisible(range)
     }
     
+    private func value() {
+        counterLabel.text = "Значение счетчика \(valueCounter)"
+    }
+    
     @IBAction private func addValue(_ sender: Any) {
         valueCounter += 1
-        counterLabel.text = "Значение счетчика \(valueCounter)"
+        value()
         historyOfChanges.text += "[\(date())] Значение изменено на + 1\n"
         scroll()
     }
@@ -60,11 +64,11 @@ class ViewController: UIViewController {
             historyOfChanges.text += "[\(date())] попытка уменьшить значение счётчика ниже 0\n"
             scroll()
         }
-        counterLabel.text = "Значение счетчика \(valueCounter)"
+        value()
     }
     @IBAction private func resetValue(_ sender: Any) {
         valueCounter = 0
-        counterLabel.text = "Значение счетчика \(valueCounter)"
+        value()
         historyOfChanges.text += "[\(date())] Значение сброшено\n"
         scroll()
     }
